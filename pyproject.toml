@@ -41,5 +41,5 @@ env_list = ["py313"]
 
 [tool.tox.env_run_base]
 depends = []
-commands = [["pytest", { replace = "posargs", extend = true }]]
+commands = [["pytest", { replace = "posargs", extend = true, default=["--cov-fail-under=100"] }]]
 extras = ["test"]
