@@ -22,7 +22,7 @@ addopts = [
   "--strict-markers",
   "--cov-report=term-missing:skip-covered",
   "--cov-config=pyproject.toml",
-  "--cov=coverage_test",
+  "--cov=",
 ]
 xfail_strict = true
 filterwarnings = [
