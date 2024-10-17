@@ -8,3 +8,38 @@ authors = [{name = "Thomas Grainger", email = "tagrain@gmail.com"}]
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
+
+[project.optional-dependencies]
+test = [
+  "pytest",
+  "pytest-cov",
+]
+
+
+[tool.pytest.ini_options]
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+  "--cov-report=term-missing:skip-covered",
+  "--cov-config=pyproject.toml",
+  "--cov=coverage_test",
+]
+xfail_strict = true
+filterwarnings = [
+  "error",
+]
+
+[tool.coverage.run]
+branch = true
+source_pkgs = ["coverage_test"]
+
+[tool.coverage.report]
+exclude_also = ["if TYPE_CHECKING:"]
+
+[tool.tox]
+env_list = ["py312"]
+
+[tool.tox.env_run_base]
+depends = []
+commands = [["pytest", { replace = "posargs", extend = true }]]
+extras = ["test"]
